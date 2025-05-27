@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Lottie from "lottie-react";
 import animation from "../assets/lottie/register.json";
 import { AuthContext } from "../context/AuthContext";
 import GoogleLogIn from "../components/GoogleLogIn";
+import { useLocation, useNavigate } from "react-router";
 
 const Register = () => {
-  const { signUp, loading, user } = useContext(AuthContext);
+  const { signUp, loading, setLoading, user } = useContext(AuthContext);
+
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,7 +15,9 @@ const Register = () => {
     const password = form.password.value;
     console.log({ email, password });
     signUp(email, password)
-      .then((result) => console.log(result))
+      .then((result) => {
+        setLoading(false);
+      })
       .catch((error) => console.log(error));
   };
   return (

@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router";
 
-const GoogleLogIn = () => {
+const GoogleLogIn = ({ form }) => {
   const { signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleGoogleSignUp = () => {
     signInWithGoogle()
-      .then((res) => console.log(res))
+      .then((res) => navigate(form || "/"))
       .catch((error) => console.log(error));
   };
   return (

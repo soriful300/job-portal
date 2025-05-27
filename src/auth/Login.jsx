@@ -3,16 +3,21 @@ import React, { useContext } from "react";
 import animation from "../assets/lottie/register.json";
 import { AuthContext } from "../context/AuthContext";
 import GoogleLogIn from "../components/GoogleLogIn";
+import { useLocation, useNavigate } from "react-router";
 
 const Login = () => {
   const { signIn, loading, user } = useContext(AuthContext);
+  const location = useLocation();
+  console.log(location);
+  const form = location.state || "/";
+  const navigate = useNavigate();
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     signIn(email, password)
-      .then((result) => console.log(result))
+      .then((result) => navigate(form))
       .catch((error) => console.log(error));
   };
   return (
@@ -46,7 +51,7 @@ const Login = () => {
               </button>
             </form>
           </div>
-          <GoogleLogIn></GoogleLogIn>
+          <GoogleLogIn form={form}></GoogleLogIn>
         </div>
       </div>
     </div>

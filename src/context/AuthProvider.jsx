@@ -10,7 +10,7 @@ import { auth } from "../firebase/firebase.config";
 const provider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
   const signUp = (email, password) => {
@@ -28,12 +28,14 @@ const AuthProvider = ({ children }) => {
   };
 
   const userSignOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
       console.log(currentUser);
     });
     return () => unSubscribe();
