@@ -7,6 +7,8 @@ import Login from "../auth/Login";
 import JobDetails from "../pages/jobdetails/JobDetails";
 import ApplyJob from "../pages/applayJob/ApplyJob";
 import ProtectedRoute from "../hooks/ProtectedRoute/ProtectedRoute";
+import ApplyInfo from "../pages/applayJob/ApplyInfo";
+import ApplyData from "../pages/myApplyJobs/ApplyData";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <ApplyJob></ApplyJob>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/myApply",
+        element: (
+          <ProtectedRoute>
+            <ApplyData></ApplyData>
           </ProtectedRoute>
         ),
       },

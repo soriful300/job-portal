@@ -1,9 +1,10 @@
 import React from "react";
+import ApplyInfo from "./ApplyInfo";
 
 const ApplyJob = () => {
   return (
     <div>
-      <h1>Apply job</h1>
+      <ApplyInfo></ApplyInfo>
     </div>
   );
 };
