@@ -11,6 +11,7 @@ import ApplyInfo from "../pages/applayJob/ApplyInfo";
 import ApplyData from "../pages/myApplyJobs/ApplyData";
 import AddJob from "../pages/AddNewJob/AddJob";
 import AddedJobList from "../pages/AddNewJob/AddedJobList";
+import Applications from "../pages/AddNewJob/Applications";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <AddedJobList></AddedJobList>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/applications/:job_id",
+        element: (
+          <ProtectedRoute>
+            <Applications></Applications>
           </ProtectedRoute>
         ),
       },

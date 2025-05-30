@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import { Link } from "react-router";
 
 const AddedJobList = () => {
-
   const { user } = useContext(AuthContext);
   const [addedJOb, setAddedJob] = useState([]);
 
@@ -16,22 +16,10 @@ const AddedJobList = () => {
   }, [user]);
   console.log(addedJOb);
 
-  // job status updated for this function
-  const updateStatus = (e, id) => {
-    const value = e.target.value;
-    const data = {
-      status: value,
-    };
-    axios
-      .patch(`http://localhost:3000/statusUpdate/${id}`, data)
-      .then((res) => console.log(res.data))
-      .catch((error) => console.log(error));
-  };
-
-  
+ 
 
   return (
-    <div>
+    <div className="min-h-screen w-11/12 mx-auto mt-10">
       <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
         <table className="table">
           {/* head */}
@@ -40,7 +28,6 @@ const AddedJobList = () => {
               <th></th>
               <th>Title</th>
               <th>category</th>
-              <th>Status</th>
               <th>Total Applicants</th>
               <th>Action</th>
             </tr>
@@ -51,21 +38,12 @@ const AddedJobList = () => {
                 <th>{index + 1}</th>
                 <td>{job.title}</td>
                 <td>{job.category}</td>
-                <td>
-                  <select
-                    defaultValue={job.status}
-                    onChange={(e) => updateStatus(e, job._id)}
-                    className="select"
-                  >
-                    <option disabled={true}>Pick a color</option>
-                    <option>Active</option>
-                    <option>Rejected</option>
-                    <option>Pending</option>
-                  </select>
-                </td>
+
                 <td>10</td>
                 <td>
-                  <button className="btn">see applicants</button>
+                  <Link to={`/applications/${job._id}`}>
+                    <button className="btn">see applicants</button>
+                  </Link>
                 </td>
               </tr>
             ))}
