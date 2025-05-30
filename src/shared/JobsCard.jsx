@@ -1,34 +1,42 @@
 import Button from "daisyui/components/button";
 import React, { use } from "react";
 import { Link } from "react-router";
+import { FaLongArrowAltRight, FaMapMarkerAlt } from "react-icons/fa";
+import { IoArrowForwardCircle, IoTime } from "react-icons/io5";
 
 const JobsCard = ({ jobsData }) => {
-  const { _id } = jobsData;
+  const {
+    _id,
+    company_logo,
+    title,
+    location,
+    description,
+    applicationDeadline,
+  } = jobsData;
   return (
     <div>
-      <div className="card bg-base-100 w-96 shadow-sm">
-        <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            Card Title
-            <div className="badge badge-secondary">NEW</div>
-          </h2>
-          <p>
-            A card component has a figure, a body part, and inside body there
-            are title and actions parts
-          </p>
-          <div className="card-actions justify-end">
-            <div className="badge badge-outline">Fashion</div>
-            <div className="badge badge-outline">Products</div>
-          </div>
+      <div className="card bg-base-100 w-full border border-green-100">
+        <div className="flex gap-4 place-items-center p-4 ">
+          <img width={40} src={company_logo} alt="company logo" />
+          <h2 className="font-bold">{title}</h2>
         </div>
-        <Link to={`/jobs/${_id}`}>
-          <button className="btn">Details</button>
+        <div className="card-body">
+          <p className="flex items-center gap-2 ">
+            <IoTime color="green" /> Deadline {applicationDeadline}
+          </p>
+          <p className="flex items-center gap-2">
+            <FaMapMarkerAlt color="red" />
+            {location}
+          </p>
+          <p className="line-clamp-2 dark:text-white overflow-hidden text-ellipsis text-gray-600">
+            {description}
+          </p>
+        </div>
+        <Link className="p-4 flex items-center" to={`/jobs/${_id}`}>
+          <button className="btn bg-green-600  text-white">
+            Job Details
+            <IoArrowForwardCircle />
+          </button>
         </Link>
       </div>
     </div>

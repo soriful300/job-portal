@@ -15,7 +15,7 @@ const HomeLayout = () => {
   }, []);
   if (loading) return <p>loading jobs....</p>;
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen ">
       <Hero></Hero>
       <Suspense>
         <HotJobs jobsData={jobsData}></HotJobs>

@@ -18,14 +18,17 @@ const Navbar = () => {
         <NavLink to={"/myApply"}>myApply</NavLink>
       </li>
       <li>
-        <NavLink to={"/"}>Home</NavLink>
+        <NavLink to={"/addJob"}>Add Job</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/addedJobList"}>Added Job List</NavLink>
       </li>
     </div>,
   ];
   return (
-    <div className="navbar bg-base-100 shadow-sm">
-      <div className="navbar-start">
-        <div className="dropdown">
+    <div className="navbar bg-gray-50 border-b border-gray-200 ">
+      <div className="navbar-start ">
+        <div className="dropdown ">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +53,9 @@ const Navbar = () => {
             {link}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-2xl font-bold">
+          <span className="text-green-600">Job</span> Seeker
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{link}</ul>
