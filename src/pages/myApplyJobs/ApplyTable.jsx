@@ -16,7 +16,7 @@ const ApplyTable = ({ applyData }) => {
             </tr>
           </thead>
           <tbody>
-            {applyData.map((singleApply) => (
+            {applyData?.map((singleApply) => (
               <TableRow singleApply={singleApply}></TableRow>
             ))}
           </tbody>

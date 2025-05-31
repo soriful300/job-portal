@@ -8,7 +8,9 @@ const ApplyData = () => {
   const email = user.email;
   const [applyData, setApplyData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3000/singleUserData/${email}`)
+    fetch(`http://localhost:3000/singleUserData/${email}`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => setApplyData(data));
   }, [email]);
