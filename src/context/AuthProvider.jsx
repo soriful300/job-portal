@@ -29,35 +29,41 @@ const AuthProvider = ({ children }) => {
   };
 
   const userSignOut = () => {
-    setLoading(true);
+    // setLoading(true);
     return signOut(auth);
   };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-      if (currentUser?.email) {
-        const userData = { email: currentUser.email };
-        axios 
-          .post("http://localhost:3000/jwt", userData, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            console.log(res.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        setUser(null);
       }
+
+      setLoading(false);
+      // if (currentUser?.email) 
+      //   const userData = { email: currentUser.email };
+      //   axios
+      //     .post("http://localhost:3000/jwt", userData, {
+      //       withCredentials: true,
+      //     })
+      //     .then((res) => {
+      //       console.log(res.data);
+      //     })
+      //     .catch((error) => {
+      //       console.log(error);
+      //     });
+      // }
     });
     return () => unSubscribe();
   }, []);
-
+//A- LHLJ
   const authInfo = {
     signUp,
     signIn,
     loading,
+    setLoading,
     user,
     signInWithGoogle,
     userSignOut,

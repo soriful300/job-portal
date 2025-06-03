@@ -10,9 +10,9 @@ const HomeLayout = () => {
       .then((res) => res.json())
       .then((data) => {
         setJobsData(data);
-        setLoading(false);
       });
   }, []);
+  console.log(jobsData);
   if (loading) return <p>loading jobs....</p>;
   return (
     <div className="min-h-screen ">

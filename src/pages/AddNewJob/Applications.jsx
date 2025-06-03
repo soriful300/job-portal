@@ -7,7 +7,7 @@ const Applications = () => {
   const { job_id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/application/job/${job_id}`)
+      .get(`http://localhost:3000/job/${job_id}`)
       .then((res) => setApplicationsData(res.data))
       .catch((error) => console.log(error));
   }, [job_id]);
@@ -19,7 +19,7 @@ const Applications = () => {
       status: value,
     };
     axios
-      .patch(`http://localhost:3000/statusUpdate/${id}`, data)
+      .patch(`https://job-portal-server-roan-theta.vercel.ap/${id}`, data)
       .then((res) => console.log(res.data))
       .catch((error) => console.log(error));
   };

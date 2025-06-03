@@ -3,10 +3,10 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
-  const { user, userSignOut } = useContext(AuthContext);
+  const { user, userSignOut, setLoading } = useContext(AuthContext);
   const handleSignOut = () => {
     userSignOut()
-      .then((result) => console.log(result))
+      .then((result) => setLoading(false))
       .catch((error) => console.log(error));
   };
   const link = [

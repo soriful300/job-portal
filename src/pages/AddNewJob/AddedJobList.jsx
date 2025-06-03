@@ -2,21 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { Link } from "react-router";
+import useAxiosSecure from "../../hooks/ProtectedRoute/useAxiosSecure";
 
 const AddedJobList = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [addedJOb, setAddedJob] = useState([]);
 
   // fetching specific email added job
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/jobs?email=${user.email}`)
-      .then((res) => setAddedJob(res.data))
-      .catch((error) => console.log(error));
-  }, [user]);
+    axiosSecure
+      .get(`/addedJob?email=${user.email}`)
+      .then((res) => setAddedJob(res.data));
+  }, [user, axiosSecure]);
   console.log(addedJOb);
-
- 
 
   return (
     <div className="min-h-screen w-11/12 mx-auto mt-10">

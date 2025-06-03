@@ -1,8 +1,11 @@
-import React, { use } from "react";
+import React, { use, useEffect } from "react";
 import TableRow from "./TableRow";
 
 const ApplyTable = ({ applyData }) => {
-  console.log(applyData);
+  // useEffect(() => {
+  //   const data = use(applyUserData);
+  //   console.log(data);
+  // }, [applyUserData]);
   return (
     <div>
       <div className="overflow-x-auto">
